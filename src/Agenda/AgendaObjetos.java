@@ -3,7 +3,7 @@ package Agenda;
 import java.util.Scanner;
 
 public class AgendaObjetos {
-
+	//command+shif+l muestra todos los atajos de teclado
 	//Declaración de variables
 	private int tam = 20;
 	int num = 0;
@@ -21,8 +21,11 @@ public class AgendaObjetos {
 	//Comienzo objetos
 	
 	public void PintarMenu() {
+		 InicializarVectores();
 		
-		do {
+		while (num!=6) {
+			
+			
 			
 	         Scanner leer=new Scanner(System.in);
 	         
@@ -31,24 +34,37 @@ public class AgendaObjetos {
 	         System.out.println("Pulsa 3 para eliminar");
 	         System.out.println("Pulsa 4 para buscar");
 	         System.out.println("Pulsa 5 para mostrar los contactos");
-	         System.out.println("Pulsa 6 para eliminar");
+	         System.out.println("Pulsa 6 para salir de la aplicación");
 	         
 	         num=leer.nextInt();
 	         
 	         switch (num) {
 	         case 1: {
-	             InicializarVectores();
 	             RellenarVectores();
+	             break;
 
 	         }
-
+	         case 2: {
+	        	 EditarContacto();
+	        	 break;
 	         }
-	         
-	    } while (num!=6);
-		
+	         case 3: {
+	        	BorrarContacto();
+	        	break;
+	         }
+	         case 4: {
+	        	 BuscarContacto();
+	        	 break;
+	         }
+	         case 5: {
+	        	 MostrarContactos();
+	        	 break;
+	         }
+	         }
+		}
 		
 	}
-	
+
 	public void InicializarVectores() {
 		
 		for (int i = 0; i < vNombres.length; i++) {
@@ -71,8 +87,41 @@ public class AgendaObjetos {
 				vNumeros[i] = leer.nextInt();
 				break;
 			}
+			
 		}
 		
 	}
 	
+	public void EditarContacto() {
+		
+	}
+	
+	public void BorrarContacto() {
+		String nom="";
+		int tlf=0;
+		Scanner leer = new Scanner(System.in);
+		
+		for (int i = 0; i < vNombres.length; i++) {
+			System.out.println("Dime el nombre del contacto que quieres borrar.");
+			nom = leer.next();
+			if (nom.equalsIgnoreCase(vNombres[i])) {
+				vNombres[i] = "";
+				vNumeros[i] = 0;
+				break;
+			}
+			
+			}
+	}
+	
+	public void BuscarContacto() {
+		
+	}
+	
+	public void MostrarContactos() {
+		
+		for (int i = 0; i < vNombres.length; i++) {
+			if (!(vNombres[i].equals("")) && !(vNumeros[i] == 0))
+			System.out.println(vNombres[i] + " " + vNumeros[i]);
+		}
+	}
 }
