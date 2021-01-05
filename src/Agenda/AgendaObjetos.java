@@ -17,6 +17,14 @@ public class AgendaObjetos {
 		this.vNombres = new String[tam];
 		this.vNumeros = new String[tam];
 	}
+	
+	public AgendaObjetos(int tam, int num, String[] vNombres, String[] vNumeros) {
+		super();
+		this.tam = tam;
+		this.num = num;
+		this.vNombres = vNombres;
+		this.vNumeros = vNumeros;
+	}
 
 	// Comienzo objetos
 
