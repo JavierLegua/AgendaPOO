@@ -90,7 +90,7 @@ public class AgendaObjetos {
 
 	}
 
-	private void BuscarContacto() {
+	public void BuscarContacto() {
 
 		String busqueda = "";
 
