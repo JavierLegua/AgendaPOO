@@ -1,26 +1,24 @@
-package Agenda;
+package Prueba;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class AgendaObjetos {
+public class PruebaObjetos {
 	// command+shif+l muestra todos los atajos de teclado
 	// Declaración de variables
 	private int tam = 20;
 	int num = 0;
 	private String vNombres[] = new String[tam];
-	private int vNumeros[] = new int[tam];
+	private String vNumeros[] = new String[tam];
 
 	// Declaramos constructores
-	public AgendaObjetos() {
+	public PruebaObjetos() {
 		this.tam = 20;
 		this.num = 0;
 		this.vNombres = new String[tam];
-		this.vNumeros = new int[tam];
+		this.vNumeros = new String[tam];
 	}
-
-	public AgendaObjetos(int tam, int num, String[] vNombres, int[] vNumeros) {
-		super();
+	
+	public PruebaObjetos(int tam, int num, String[] vNombres, String[] vNumeros) {
 		this.tam = tam;
 		this.num = num;
 		this.vNombres = vNombres;
@@ -30,7 +28,7 @@ public class AgendaObjetos {
 	// Comienzo objetos
 
 	public void PintarMenu() {
-
+		
 		InicializarVectores();
 
 		while (num != 6) {
@@ -77,7 +75,9 @@ public class AgendaObjetos {
 
 		for (int i = 0; i < vNombres.length; i++) {
 			vNombres[i] = "";
-			vNumeros[i] = 0;
+		}
+		for (int i = 0; i < vNumeros.length; i++) {
+			vNumeros[i] = "";
 		}
 	}
 
@@ -86,11 +86,11 @@ public class AgendaObjetos {
 		Scanner leer = new Scanner(System.in);
 
 		for (int i = 0; i < vNombres.length; i++) {
-			if ((vNombres[i].equals("")) && (vNumeros[i] == 0)) {
+			if ((vNombres[i].equals("")) && (vNumeros[i].equals(""))) {
 				System.out.println("Dime el nombre del contacto que quieres guardar.");
 				vNombres[i] = leer.next();
 				System.out.println("Dime el número de teléfono del contacto");
-				vNumeros[i] = leer.nextInt();
+				vNumeros[i] = leer.next();
 				break;
 			}
 
@@ -107,7 +107,7 @@ public class AgendaObjetos {
 		busqueda = leer.next();
 
 		for (int i = 0; i < vNombres.length; i++) {
-			if ((vNombres[i].equalsIgnoreCase(busqueda))) {
+			if ((vNombres[i].equalsIgnoreCase(busqueda)) || (vNumeros[i] == busqueda)) {
 				System.out.println("El nombre del contacto es: " + vNombres[i] + " y su teléfono es: " + vNumeros[i]);
 			}
 		}
@@ -122,11 +122,11 @@ public class AgendaObjetos {
 		edit = leer.next();
 
 		for (int i = 0; i < vNombres.length; i++) {
-			if ((vNombres[i].equalsIgnoreCase(edit))) {
+			if ((vNombres[i].equalsIgnoreCase(edit)) || (vNumeros[i].equals(edit))) {
 				System.out.println("Dime el nuevo nombre del contacto.");
 				vNombres[i] = leer.next();
 				System.out.println("Dime el nuevo numero del contacto.");
-				vNumeros[i] = leer.nextInt();
+				vNumeros[i] = leer.next();
 			}
 		}
 	}
@@ -141,7 +141,7 @@ public class AgendaObjetos {
 		for (int i = 0; i < vNombres.length; i++) {
 			if (nom.equalsIgnoreCase(vNombres[i])) {
 				vNombres[i] = "";
-				vNumeros[i] = 0;
+				vNumeros[i] = "";
 				break;
 			}
 
@@ -151,15 +151,8 @@ public class AgendaObjetos {
 	public void MostrarContactos() {
 
 		for (int i = 0; i < vNombres.length; i++) {
-			if (!(vNombres[i].equals("")) && !(vNumeros[i] == 0))
+			if (!(vNombres[i].equals("")) && !(vNumeros[i].equals("")))
 				System.out.println(vNombres[i] + " " + vNumeros[i]);
 		}
 	}
-
-	@Override
-	public String toString() {
-		return "AgendaObjetos [tam=" + tam + ", num=" + num + ", vNombres=" + Arrays.toString(vNombres) + ", vNumeros="
-				+ Arrays.toString(vNumeros) + "]";
-	}
-
 }
